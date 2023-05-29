@@ -193,6 +193,18 @@ describe('LoginRouter', () => {
     expect(httpResponse.body).toEqual(new ServerError())
   })
 
+  test('Should call EmailValidator with correct params', async () => {
+    const { sut, emailValidatorSpy } = makeSut()
+    const httpRequest = {
+      body: {
+        email: 'any_email@email.com',
+        password: 'any_password'
+      }
+    }
+    await sut.route(httpRequest)
+    expect(emailValidatorSpy.email).toBe(httpRequest.body.email)
+  })
+
   test('Should return 500 if no EmailValidator is provided', async () => {
     const authUseCaseSpy = makeAuthUseCase()
     const sut = new LoginRouter(authUseCaseSpy)
@@ -234,17 +246,5 @@ describe('LoginRouter', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
-  })
-
-  test('Should call EmailValidator with correct params', async () => {
-    const { sut, emailValidatorSpy } = makeSut()
-    const httpRequest = {
-      body: {
-        email: 'any_email@email.com',
-        password: 'any_password'
-      }
-    }
-    await sut.route(httpRequest)
-    expect(emailValidatorSpy.email).toBe(httpRequest.body.email)
   })
 })
