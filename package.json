@@ -6,14 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbevilacqua/clean-node-api.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vbevilacqua/clean-node-api/issues"
-  },
-  "homepage": "https://github.com/vbevilacqua/clean-node-api#readme"
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
 }
