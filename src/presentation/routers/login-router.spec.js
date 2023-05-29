@@ -1,8 +1,5 @@
 const LoginRouter = require('./login-router')
-const InvalidParamError = require('../helpers/invalid-param-error')
-const MissingParamError = require('../helpers/missing-param-error')
-const UnauthorizedError = require('../helpers/unauthorized-error')
-const ServerError = require('../helpers/server-error')
+const { InvalidParamError, MissingParamError, ServerError, UnauthorizedError } = require('../errors')
 
 const makeSut = () => {
   // Mocked class in order to test
