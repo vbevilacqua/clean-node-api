@@ -1,5 +1,6 @@
 const EmailValidator = require('./email-validator')
 const validator = require('validator')
+const MissingParamError = require('../errors/missing-param-error')
 
 const makeSut = () => {
   return new EmailValidator()
@@ -23,5 +24,14 @@ describe('Email Validator', () => {
     const sut = makeSut()
     sut.isValid('valid_email@email.com')
     expect(validator.email).toBe('valid_email@email.com')
+  })
+
+  test('Should throw if no email is provided', async () => {
+    const sut = makeSut()
+    // If method IS NOT async then you need to pass
+    // the pointer of the function when testing
+    expect(sut.isValid).toThrow(new MissingParamError('email'))
+    // OR use arrow function
+    expect(() => { sut.isValid() }).toThrow(new MissingParamError('email'))
   })
 })
