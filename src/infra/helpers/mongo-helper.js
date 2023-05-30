@@ -17,7 +17,7 @@ module.exports = {
 
   async getDb () {
     // Figure out how to do it in this new version
-    // if (!this.client.isConnected()) {
+    // if (!this.client || !this.client.isConnected()) {
     //   await this.connect(this.uri, this.dbName)
     // }
     return this.db
